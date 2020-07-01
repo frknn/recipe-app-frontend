@@ -1,26 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Header from './components/Header';
+import RecipeSearchComponent from './components/RecipeSearchComponent';
+import WhatToCookComponent from './components/WhatToCookComponent';
+import Login from './components/Login';
+import ModalWrapper from './components/ModalWrapper';
+import Signup from './components/Signup';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  const [page, setPage] = useState('header')
+  const [loginDisplay, setLoginDisplay] = useState('none')
+  const [signupDisplay, setSignupDisplay] = useState('none')
+
+  const handlePageSwitch = (page) => {
+    setPage(page)
+  }
+
+  const handleLoginDisplay = (display) => {
+    setLoginDisplay(display)
+  }
+
+  const handleSignupDisplay = (display) => {
+    setSignupDisplay(display)
+  }
+
+  switch (page) {
+    case 'header':
+      return (
+        <>
+          <Header handleLoginDisplay={handleLoginDisplay} handlePageSwitch={handlePageSwitch} handleSignupDisplay={handleSignupDisplay}/>
+          <ModalWrapper elementDisplay={loginDisplay}>
+            <Login handleLoginDisplay={handleLoginDisplay} />
+          </ModalWrapper>
+          <ModalWrapper elementDisplay={signupDisplay}>
+            <Signup handleSignupDisplay={handleSignupDisplay}/>
+          </ModalWrapper>
+        </>
+      )
+
+    case 'search':
+      return (<RecipeSearchComponent handlePageSwitch={handlePageSwitch} />)
+
+    case 'filter':
+      return (<WhatToCookComponent handlePageSwitch={handlePageSwitch} />)
+
+    default:
+      return (<Header handlePageSwitch={handlePageSwitch} />)
+  }
 }
 
 export default App;

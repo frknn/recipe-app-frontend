@@ -1,0 +1,20 @@
+.login-signup{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-signup-span {
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.login-signup-span:hover {
+  color: #9416dd;
+}
+
+.login-signup-line {
+  font-size: 2rem;
+  cursor: default;
+}

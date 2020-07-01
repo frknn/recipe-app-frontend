@@ -1,0 +1,96 @@
+.ingredients-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 70vw;
+  margin: 1rem auto;
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 70vw;
+  height: auto;
+  border-radius: 2rem;
+  margin: 0 auto;
+}
+
+.time-input-div {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.category-input-div{
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+
+.time-input {
+  background-color: inherit;
+  width: 4rem;
+  min-height: 50px;
+  font-size: 2rem;
+  font-weight: 400;
+  outline: 0;
+  border: 0;
+  opacity: 0.5;
+  border-bottom: 2px solid black;
+  text-align: center;
+}
+
+.category-input{
+  background-color: inherit;
+  width: auto;
+  font-size: 2rem;
+  font-weight: 400;
+  outline: 0;
+  border: 0;
+  opacity: 0.5;
+  border-bottom: 2px solid black;
+  text-align: center;
+}
+
+.category-input option {
+  background-color: whitesmoke;
+}
+
+.filter-button{
+  font-size: 2rem;
+  margin: 1rem;
+  box-shadow: rgba(0,0,0,0.3) 0px 2px 4px;
+  outline: 0;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.filter-button:hover{
+  background-color: lightgreen;
+}
+
+
+.input-text {
+  margin: 0 1rem;
+}
+
+/* to remove arrows on the right side of number input */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+  /* Firefox */
+}

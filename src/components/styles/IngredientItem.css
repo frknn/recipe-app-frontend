@@ -1,0 +1,37 @@
+.ingredient-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
+  border-radius: 5px;
+  box-shadow: rgba(0,0,0,0.2) 0px 2px 4px
+
+}
+
+.ingredient-item-p {
+  width: auto;
+  border-radius: 5px 0 0 5px;
+  background-color: rgb(152, 247, 152);
+}
+
+.ingredient-item-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 1.5rem;
+  height: 34px;
+  border-radius: 0 5px 5px 0;
+  background-color: rgb(255, 87, 87);
+}
+
+.ingredient-item-p p {
+  margin: 0;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.ingredient-item-img img {
+  width: 0.5rem;
+  height: 0.5rem;
+}

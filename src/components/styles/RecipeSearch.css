@@ -1,0 +1,23 @@
+.search-item {
+  display: flex;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 0 5px;
+  box-shadow: rgba(0,0,0,0.2) 0px 2px 4px
+}
+
+.search-item:hover {
+  background-color: whitesmoke;
+
+}
+
+.search-item img {
+  padding: 0 10px 0 10px;
+}
+
+.search-item span {
+  padding: 0 10px 0 10px;
+  font-size: 1.5rem;
+}
