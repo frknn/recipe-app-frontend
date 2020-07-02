@@ -1,0 +1,211 @@
+.recipe-form-wrapper {
+  width: 95%;
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.recipe-form {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.amount-prep-cook {
+  display: flex;
+  opacity: 0.7;
+}
+
+.amount-prep-cook div {
+  margin: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.5rem;
+  border: 2px dashed whitesmoke;
+  border-radius: 0.5rem;
+}
+
+.amount-prep-cook div:hover {
+  border: 2px dashed #e100ff;
+}
+
+.number-input {
+  background-color: inherit;
+  width: 4rem;
+  min-height: 50px;
+  font-size: 2rem;
+  font-weight: 400;
+  outline: 0;
+  border: 0;
+  opacity: 0.5;
+  border-bottom: 2px solid black;
+  text-align: center;
+}
+
+.recipe-title-post {
+  background-color: inherit;
+  width: 80%;
+  min-height: 50px;
+  font-size: 3rem;
+  font-weight: 400;
+  outline: 0;
+  border: 0;
+  opacity: 0.8;
+  text-align: center;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  border: 2px dashed whitesmoke;
+}
+
+.recipe-title-post:hover {
+  border: 2px dashed #e100ff;
+}
+
+.recipe-intro-sentence {
+  background-color: inherit;
+  width: 80%;
+  min-height: 50px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  outline: 0;
+  border: 0;
+  opacity: 0.5;
+  text-align: center;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  border: 2px dashed whitesmoke;
+}
+
+.recipe-intro-sentence:hover {
+  border: 2px dashed #e100ff;
+}
+
+.ingredients {
+  margin: 1rem 1rem 0;
+  padding: 1rem;
+  font-weight: 600;
+}
+
+.ingredients p {
+  margin: 0;
+  font-size: 2rem;
+  border-bottom: 2px solid black;
+}
+
+.ingredients-textarea {
+  background-color: inherit;
+  width: 100%;
+  min-height: 50px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  outline: 0;
+  border: 0;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  resize: none;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 2px dashed whitesmoke;
+}
+
+.ingredients-textarea:focus {
+  border: 2px dashed #e100ff;
+}
+
+.ingredients-textarea:hover {
+  border: 2px dashed #e100ff;
+}
+
+.recipe-steps {
+  margin: 0rem 1rem;
+  padding: 1rem;
+  font-weight: 600;
+}
+
+.recipe-steps p {
+  margin: 0;
+  font-size: 2rem;
+  border-bottom: 2px solid black;
+}
+
+.recipe-steps-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.recipe-steps-textarea {
+  background-color: inherit;
+  width: 100%;
+  min-height: 50px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  outline: 0;
+  border: 0;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  resize: none;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 2px dashed gray;
+}
+
+.recipe-steps-textarea:hover{
+  border: 2px dashed #e100ff;
+}
+
+.recipe-steps-textarea:focus{
+  border: 2px dashed #e100ff;
+}
+
+.add-remove-button-div {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-remove-button-div .add{
+  font-size: 1.5rem;
+  outline: 0;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.add-remove-button-div .remove{
+  font-size: 1.5rem;
+  outline: 0;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.add-remove-button-div .add:hover{
+  background-color: lightgreen;
+}
+
+.add-remove-button-div .remove:hover{
+  background-color: lightcoral;
+}
+
+.recipe-post-button{
+  font-size: 2rem;
+  margin: 1rem;
+  box-shadow: rgba(0,0,0,0.3) 0px 2px 4px;
+  outline: 0;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin: 2rem;
+}
+
+.recipe-post-button:hover{
+  background-color: lightgreen;
+}

@@ -13,8 +13,6 @@ function RecipeList(props) {
       <RecipeCard/>
       <RecipeCard/>
       <RecipeCard/>
-      <RecipeCard/>
-
     </div>
   )
 }

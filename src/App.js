@@ -7,6 +7,8 @@ import Login from './components/Login';
 import ModalWrapper from './components/ModalWrapper';
 import Signup from './components/Signup';
 import RecipeList from './components/RecipeList';
+import RecipeForm from './components/RecipeForm';
+
 
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
     setSignupDisplay(display)
   }
 
+  
   switch (page) {
     case 'header':
       return (
@@ -39,6 +42,7 @@ function App() {
             <Signup handleSignupDisplay={handleSignupDisplay}/>
           </ModalWrapper>
           <RecipeList/>
+          <RecipeForm/>
         </>
       )
 
