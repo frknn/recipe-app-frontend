@@ -11,7 +11,7 @@ function RecipeForm() {
     items.push(<>
       <textarea className="recipe-steps-textarea" name="recipeStep" id="recipeStepId" cols="60" rows="5" placeholder="Tarifinizi adım adım anlatın, gerektikçe adım ekleyin." />
       <div className="add-remove-button-div">
-        <button onClick={() => setRecipeSteps(recipeSteps + 1)} className="add">Ekle</button>
+        {i === recipeSteps - 1 ? <button onClick={() => setRecipeSteps(recipeSteps + 1)} className="add">Ekle</button> : null}
         {i !== 0 ? <button onClick={() => setRecipeSteps(recipeSteps - 1)} className="remove">Kaldır</button> : null}
       </div>
     </>)
