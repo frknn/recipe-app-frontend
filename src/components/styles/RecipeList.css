@@ -1,0 +1,9 @@
+.recipe-list{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 1rem;
+  width: 90%;
+  height: auto;
+  margin: 5rem auto;
+}

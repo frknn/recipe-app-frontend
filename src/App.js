@@ -6,6 +6,7 @@ import WhatToCookComponent from './components/WhatToCookComponent';
 import Login from './components/Login';
 import ModalWrapper from './components/ModalWrapper';
 import Signup from './components/Signup';
+import RecipeList from './components/RecipeList';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <ModalWrapper elementDisplay={signupDisplay}>
             <Signup handleSignupDisplay={handleSignupDisplay}/>
           </ModalWrapper>
+          <RecipeList/>
         </>
       )
 
