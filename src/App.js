@@ -8,6 +8,7 @@ import ModalWrapper from './components/ModalWrapper';
 import Signup from './components/Signup';
 import RecipeList from './components/RecipeList';
 import RecipeForm from './components/RecipeForm';
+import RecipePage from './components/RecipePage';
 
 
 
@@ -34,7 +35,7 @@ function App() {
     case 'header':
       return (
         <>
-          <Header handleLoginDisplay={handleLoginDisplay} handlePageSwitch={handlePageSwitch} handleSignupDisplay={handleSignupDisplay}/>
+          {/* <Header handleLoginDisplay={handleLoginDisplay} handlePageSwitch={handlePageSwitch} handleSignupDisplay={handleSignupDisplay}/>
           <ModalWrapper elementDisplay={loginDisplay}>
             <Login handleLoginDisplay={handleLoginDisplay} />
           </ModalWrapper>
@@ -42,7 +43,8 @@ function App() {
             <Signup handleSignupDisplay={handleSignupDisplay}/>
           </ModalWrapper>
           <RecipeList/>
-          <RecipeForm/>
+          <RecipeForm/> */}
+          <RecipePage/>
         </>
       )
 
