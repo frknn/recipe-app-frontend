@@ -6,8 +6,8 @@ import './styles/SearchItems.css'
 function SearchItems(props) {
   return (
     <div className="search-items">
-      <RecipeSearch handlePageSwitch={props.handlePageSwitch}/>
-      <WhatToCook handlePageSwitch={props.handlePageSwitch}/>
+      <RecipeSearch/>
+      <WhatToCook/>
     </div>
   )
 }

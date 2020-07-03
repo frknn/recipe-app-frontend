@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './styles/WhatToCookComponent.css'
 import IngredientItem from './IngredientItem'
 import closeIcon from './icons/close-icon.png'
@@ -32,9 +33,11 @@ function WhatToCookComponent(props) {
 
   return (
     <div className="close-wrapper">
-      <div className="close" onClick={() => props.handlePageSwitch('header')}>
-        <img style={{ width: "2rem", height: "2rem" }} src={closeIcon} alt="close-icon" /><span className="close-label">KAPAT</span>
-      </div>
+      <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+        <div className="close">
+          <img style={{ width: "2rem", height: "2rem" }} src={closeIcon} alt="close-icon" /><span className="close-label">KAPAT</span>
+        </div>
+      </Link>
       <input onKeyDown={addIngredient} value={ingredient} onChange={e => setIngredient(e.target.value)} className="recipe-search-input" type="text" placeholder="Malzemelerinizi tek tek girin..." maxLength="30" autoFocus />
       <div className="ingredients-list">
         {
@@ -43,10 +46,10 @@ function WhatToCookComponent(props) {
       </div>
       <div className="filter-section">
         <div className="time-input-div">
-          <span className="input-text">Hazırlanma süresi </span><input className="time-input" type="number" min="1"/><span className="input-text"> dakikadan kısa olsun.</span>
+          <span className="input-text">Hazırlanma süresi </span><input className="time-input" type="number" min="1" /><span className="input-text"> dakikadan kısa olsun.</span>
         </div>
         <div className="time-input-div">
-          <span className="input-text">Pişirme süresi </span><input class="time-input" type="number" min="1"/><span className="input-text"> dakikadan kısa olsun.</span>
+          <span className="input-text">Pişirme süresi </span><input className="time-input" type="number" min="1" /><span className="input-text"> dakikadan kısa olsun.</span>
         </div>
         <div className="category-input-div">
           <select className="category-input" name="category" id="categoryId">

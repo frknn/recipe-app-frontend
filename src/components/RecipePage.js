@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './styles/RecipePage.css'
 
 function RecipePage() {
@@ -41,7 +41,7 @@ function RecipePage() {
         <h2>Tarif Adımları</h2>
         <ul>
           <li>sucukları kes</li>
-          <li>kaşarları kes kes</li>
+          <li>kaşarları kes</li>
           <li>yumurtaları çırp</li>
           <li>sucukları ekmeğin üzerindeyken tost makinesinde çevirerek pişir</li>
           <li>sucuklar pişince çırpılan yumurtayı dök, tost makinesini 10 sn. kapatıp pişir</li>

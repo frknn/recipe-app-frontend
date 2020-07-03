@@ -13,7 +13,7 @@ function RecipeCard() {
         <p className="intro-sentence">Kahvaltının vazgeçilmezi</p>
         <span className="cat-min">Kategori</span><span> - </span><span className="cat-min">20 dk</span>
         <div className="recipe-owner">
-          <img class="user-icon" src={userIcon} alt="user-icon" /><span>Ad Soyad</span>
+          <img className="user-icon" src={userIcon} alt="user-icon" /><span>Ad Soyad</span>
         </div>
       </div>
     </div>

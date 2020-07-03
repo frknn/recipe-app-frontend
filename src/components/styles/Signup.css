@@ -1,7 +1,7 @@
 .signup {
   z-index: 2;
   width: 50vw;
-  height: 50vh;
+  height: auto;
   background-color: whitesmoke;
   border-radius: 0.5rem;
   opacity: 1;
@@ -9,7 +9,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 2rem;
   box-sizing: border-box;
 }
 

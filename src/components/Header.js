@@ -9,8 +9,9 @@ function Header(props) {
     <header className="site-header-wrapper">
       <div className="header">
         <SiteTitle />
-        <SearchItems handlePageSwitch={props.handlePageSwitch}/>
-        <LoginSignup handleLoginDisplay={props.handleLoginDisplay} handleSignupDisplay={props.handleSignupDisplay}/>
+        <SearchItems handlePageSwitch={props.handlePageSwitch} />
+        <span>{props.currentUser ? props.currentUser.user.email : null}</span>
+        <LoginSignup handleLoginDisplay={props.handleLoginDisplay} handleSignupDisplay={props.handleSignupDisplay} />
       </div>
     </header>
   )

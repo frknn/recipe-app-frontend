@@ -1,62 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import Header from './components/Header';
 import RecipeSearchComponent from './components/RecipeSearchComponent';
 import WhatToCookComponent from './components/WhatToCookComponent';
-import Login from './components/Login';
-import ModalWrapper from './components/ModalWrapper';
-import Signup from './components/Signup';
-import RecipeList from './components/RecipeList';
 import RecipeForm from './components/RecipeForm';
 import RecipePage from './components/RecipePage';
+import Home from './components/Home';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
 
 
 function App() {
 
-  const [page, setPage] = useState('header')
-  const [loginDisplay, setLoginDisplay] = useState('none')
-  const [signupDisplay, setSignupDisplay] = useState('none')
+  const [currentUser, setCurrentUser] = useState(null)
 
-  const handlePageSwitch = (page) => {
-    setPage(page)
-  }
+  useEffect(() => {
+    setCurrentUser(JSON.parse(window.localStorage.getItem('currentUser')))
+  }, [])
 
-  const handleLoginDisplay = (display) => {
-    setLoginDisplay(display)
-  }
 
-  const handleSignupDisplay = (display) => {
-    setSignupDisplay(display)
-  }
-
-  
-  switch (page) {
-    case 'header':
-      return (
-        <>
-          {/* <Header handleLoginDisplay={handleLoginDisplay} handlePageSwitch={handlePageSwitch} handleSignupDisplay={handleSignupDisplay}/>
-          <ModalWrapper elementDisplay={loginDisplay}>
-            <Login handleLoginDisplay={handleLoginDisplay} />
-          </ModalWrapper>
-          <ModalWrapper elementDisplay={signupDisplay}>
-            <Signup handleSignupDisplay={handleSignupDisplay}/>
-          </ModalWrapper>
-          <RecipeList/>
-          <RecipeForm/> */}
-          <RecipePage/>
-        </>
-      )
-
-    case 'search':
-      return (<RecipeSearchComponent handlePageSwitch={handlePageSwitch} />)
-
-    case 'filter':
-      return (<WhatToCookComponent handlePageSwitch={handlePageSwitch} />)
-
-    default:
-      return (<Header handlePageSwitch={handlePageSwitch} />)
-  }
+  return (
+    <Router>
+      {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+      <Switch>
+        <Route path="/ara">
+          <RecipeSearchComponent />
+        </Route>
+        <Route path="/filtrele">
+          <WhatToCookComponent />
+        </Route>
+        <Route path="/paylas">
+          <RecipeForm />
+        </Route>
+        <Route path="/">
+          <Home setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+        </Route>
+      </Switch>
+    </Router>
+  )
 }
 
 export default App;
