@@ -10,7 +10,6 @@
 .header{
   display: flex;
   justify-content: space-between;
-  box-sizing: border-box;
   max-width: 940px;
   margin: 0 auto;
   padding: 1rem 0;

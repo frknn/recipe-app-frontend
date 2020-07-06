@@ -8,7 +8,8 @@ import Home from './components/Home';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 
 
@@ -33,11 +34,14 @@ function App() {
         <Route path="/filtrele">
           <WhatToCookComponent />
         </Route>
-        <Route path="/paylas">
-          <RecipeForm />
-        </Route>
+        <Route path="/paylas" render={() =>
+          currentUser ? <RecipeForm /> :
+            <Redirect to="/" />
+        } />
         <Route path="/">
-          <Home setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+          {/* <Home setCurrentUser={setCurrentUser} currentUser={currentUser} /> */}
+          <RecipeForm/>
+
         </Route>
       </Switch>
     </Router>

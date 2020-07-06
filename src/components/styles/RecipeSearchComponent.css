@@ -1,7 +1,7 @@
 .close-wrapper {
-  padding-top: 2rem;
-  padding-left: 7rem;
-  width: 80vw;
+  padding: 2rem;
+  width: 80%;
+  margin: auto;
 }
 
 .close {

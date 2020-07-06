@@ -3,6 +3,7 @@ import './styles/Header.css'
 import SiteTitle from './SiteTitle'
 import LoginSignup from './LoginSignup'
 import SearchItems from './SearchItems'
+import LoggedIn from './LoggedIn'
 
 function Header(props) {
   return (
@@ -10,8 +11,7 @@ function Header(props) {
       <div className="header">
         <SiteTitle />
         <SearchItems handlePageSwitch={props.handlePageSwitch} />
-        <span>{props.currentUser ? props.currentUser.user.email : null}</span>
-        <LoginSignup handleLoginDisplay={props.handleLoginDisplay} handleSignupDisplay={props.handleSignupDisplay} />
+        {props.currentUser ? <LoggedIn setCurrentUser={props.setCurrentUser} currentUser={props.currentUser}/> : <LoginSignup handleLoginDisplay={props.handleLoginDisplay} handleSignupDisplay={props.handleSignupDisplay} />}
       </div>
     </header>
   )
