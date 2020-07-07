@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import closeIcon from './icons/close-icon.png'
+import upArrowIcon from './icons/up-arrow.png'
+import downArrowIcon from './icons/down-arrow.png'
 import './styles/RecipeForm.css'
 
 const RecipeStep = ({ step, handleRemove, index, handleMove }) => {
   return (
     <div className="recipe-step">
       <div className="up-down">
-        <button onClick={() => handleMove('up', index)} className="btn-up">Yukarı</button>
-        <button onClick={() => handleMove('down', index)} className="btn-down">Aşağı</button>
+        <div onClick={() => handleMove('up', index)} className="btn-up"><img src={upArrowIcon} alt="up-arrow"/></div>
+        <div onClick={() => handleMove('down', index)} className="btn-down"><img src={downArrowIcon} alt="down-arrow"/></div>
       </div>
       <div className="step-div">{step}</div>
       <div onClick={() => handleRemove(index)} className="recipe-step-img-span">

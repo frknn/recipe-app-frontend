@@ -41,7 +41,6 @@ function App() {
         <Route path="/">
           {/* <Home setCurrentUser={setCurrentUser} currentUser={currentUser} /> */}
           <RecipeForm/>
-
         </Route>
       </Switch>
     </Router>
