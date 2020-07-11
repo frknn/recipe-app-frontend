@@ -21,4 +21,4 @@ const register = async (registerObject) => {
   }
 }
 
-export { login, register }
+export default { login, register }

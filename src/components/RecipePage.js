@@ -1,38 +1,56 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles/RecipePage.css'
+import { useParams } from 'react-router-dom'
+import recipeService from '../services/recipeService'
+import closeIcon from './icons/close-icon.png'
+import { Link } from 'react-router-dom'
 
 function RecipePage() {
 
-  let url = "http://uppizzadoner.com/wp-content/uploads/2019/04/tost2.jpg"
-  return (
+  let { id } = useParams()
+
+  const [recipe, setRecipe] = useState(null)
+  const [loading, setLoading] = useState(true)
+  let url = "https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_960_720.jpg"
+
+  useEffect(() => {
+    recipeService.getRecipeById(id).then(res => {
+      if (res.success) {
+        setRecipe(res.data)
+      } else {
+        setRecipe(null)
+      }
+      setLoading(false)
+    }).catch(err => alert(err))
+  }, [id])
+
+  return (loading ? null : recipe ?
     <div className="recipe-page-wrapper">
+      <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+        <div className="close">
+          <img style={{ width: "2rem", height: "2rem" }} src={closeIcon} alt="close-icon" /><span className="close-label">KAPAT</span>
+        </div>
+      </Link>
       <div className="recipe-page-img-ingredients-wrapper">
         <div style={{ backgroundImage: `url(${url})` }} className="recipe-page-img">
           <div className="under-image-info">
 
             <div>
-              <h1>Karışık Tost</h1>
-              <p>Kahvaltının vazgeçilmezi</p>
-              <span>Kahvaltılık</span>
+              <h1>{recipe.title}</h1>
+              <p>{recipe.description}</p>
+              <span>{recipe.category}</span>
               <span> - </span>
-              <span>5 dk hazırlama</span>
+              <span>{recipe.prepTime} dk hazırlama</span>
               <span> - </span>
-              <span>5 dk pişirme</span>
+              <span>{recipe.cookTime} dk pişirme</span>
               <span> - </span>
-              <span>4 Kişilik</span> </div>
+              <span>{recipe.amount} Kişilik</span> </div>
           </div>
         </div>
         <div className="recipe-page-ingredients">
           <h2>Malzemeler</h2>
           <ul>
-            <li>200 gram sucuk</li>
-            <li>400 gram kaşar peyniri</li>
-            <li>1 yemek kaşığı salça</li>
-            <li>2 yumurta</li>
-            <li>1 çay kaşığı kırmızı biber</li>
-            <li>dilediğiniz kadar kekik</li>
-            <li>isteğe göre ketçap</li>
-            <li>isteğe göre mayonez</li>
+            {recipe.ingredients.map((i, idx) => <li key={idx}>{i}</li>)}
           </ul>
         </div>
       </div>
@@ -40,19 +58,16 @@ function RecipePage() {
       <div className="recipe-page-content">
         <h2>Tarif Adımları</h2>
         <ul>
-          <li>sucukları kes</li>
-          <li>kaşarları kes</li>
-          <li>yumurtaları çırp</li>
-          <li>sucukları ekmeğin üzerindeyken tost makinesinde çevirerek pişir</li>
-          <li>sucuklar pişince çırpılan yumurtayı dök, tost makinesini 10 sn. kapatıp pişir</li>
-          <li>yumurta piştikten sonra ekmeği açıp kaşarları koy, salçasını sür, dışına tereyağını sür</li>
-          <li>kaşarlar eriyinceye kadar pişir</li>
+          {
+            recipe.recipeSteps.map((rs, idx) => <li key={idx}>{rs}</li>)
+          }
 
         </ul>
       </div>
 
-    </div>
-  )
+    </div> : <h1>Tarif bulunamadı!</h1>)
+
+
 }
 
 export default RecipePage

@@ -9,6 +9,7 @@
   width: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 1rem;
 }
 
 .recipe-page-img {

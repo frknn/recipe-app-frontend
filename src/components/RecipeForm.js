@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import closeIcon from './icons/close-icon.png'
 import upArrowIcon from './icons/up-arrow.png'
 import downArrowIcon from './icons/down-arrow.png'
 import './styles/RecipeForm.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { createRecipe } from '../reducers/recipeReducer'
+import { toast } from 'react-toastify'
+import { removeError } from '../reducers/errorReducer'
+import { removeSuccess } from '../reducers/successReducer'
 
 const RecipeStep = ({ step, handleRemove, index, handleMove }) => {
   return (
     <div className="recipe-step">
       <div className="up-down">
-        <div onClick={() => handleMove('up', index)} className="btn-up"><img src={upArrowIcon} alt="up-arrow"/></div>
-        <div onClick={() => handleMove('down', index)} className="btn-down"><img src={downArrowIcon} alt="down-arrow"/></div>
+        <div onClick={() => handleMove('up', index)} className="btn-up"><img src={upArrowIcon} alt="up-arrow" /></div>
+        <div onClick={() => handleMove('down', index)} className="btn-down"><img src={downArrowIcon} alt="down-arrow" /></div>
       </div>
       <div className="step-div">{step}</div>
       <div onClick={() => handleRemove(index)} className="recipe-step-img-span">
@@ -20,71 +25,64 @@ const RecipeStep = ({ step, handleRemove, index, handleMove }) => {
   )
 }
 
-
 function RecipeForm() {
 
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const error = useSelector(state => state.error)
+  const success = useSelector(state => state.success)
+
+  useEffect(() => {
+    if (error.error) {
+      toast.error(error.error)
+      dispatch(removeError())
+    } else if (success.success) {
+      toast.success(success.success)
+      dispatch(removeSuccess())
+      history.push('/')
+    }
+  }, [error.error, success.success, history, dispatch])
+
   let categories = [
-    {
-      key: 'kahvaltilik',
-      value: 'kahvaltılıktır'
-    },
-    {
-      key: 'atistirmalik',
-      value: 'atıştırmalıktır'
-    },
-    {
-      key: 'baslangic',
-      value: 'başlangıçtır'
-    }, {
-      key: 'araSicak',
-      value: 'ara sıcaktır'
-    },
-    {
-      key: 'aksamYemegi',
-      value: 'akşam yemeğidir'
-    },
-    {
-      key: 'ekmekArasi',
-      value: 'ekmek arasıdır'
-    },
-    {
-      key: 'sogukIcecek',
-      value: 'soğuk içecektir'
-    },
-    {
-      key: 'sicakIcecek',
-      value: 'sıcak içecektir'
-    },
-    {
-      key: 'tatli',
-      value: 'tatlıdır'
-    },
+    'kahvaltılık', 'atıştırmalık', 'aperatif', 'meze', 'başlangıç', 'ara sıcak', 'ana yemek', 'tatlı', 'ekmek arası', 'soğuk içecek', 'sıcak içecek'
   ]
 
-
   const [currentStep, setCurrentStep] = useState('')
-  const [recipeSteps, setRecipeSteps] = useState(['asdas', 'asfaskdhflksdglahsdglaksdfklasdfaksdhflkasdgfklahsgdahsdgaljsdgfalksdgfaklsgaksdfasdf', 'dasjhaskdghaskjhjaksdhgjaklsdhgjaksdhgkalsdhgklasdhgkljasdhgkljashgklasdhglkjasdhgjklasdhgalskdghaslkdghaksdghaslkdghaskdghaksldghalksdghlaskdhgasdghaskldghasdgasjkldgasdg', 'a'])
+  const [recipeSteps, setRecipeSteps] = useState([])
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [amount, setAmount] = useState('')
   const [prepTime, setPrepTime] = useState('')
   const [cookTime, setCookTime] = useState('')
-  const [category, setCategory] = useState(categories[0].key)
+  const [category, setCategory] = useState(categories[0])
   const [ingredients, setIngredients] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!(title && description && amount && prepTime && cookTime && ingredients.split('\n').map(i => i.trim()).filter(i => i).length)) {
-      alert('Lütfen tüm alanları doldurunuz!')
+    if (!(title && description && amount && prepTime && cookTime && ingredients.split('\n').map(i => i.trim()).filter(i => i).length && recipeSteps.length)) {
+      toast.error('Lütfen tüm alanları doldurun!')
     } else {
-      alert('Form gönderilmeye hazır!')
+      const recipeObj = {
+        title,
+        description,
+        amount,
+        category,
+        prepTime,
+        cookTime,
+        ingredients: ingredients.split('\n').map(i => i.trim()).filter(i => i),
+        recipeSteps
+      }
+      dispatch(createRecipe(recipeObj))
     }
   }
 
   const addStep = (e) => {
     if (e.key === 'Enter') {
-      setRecipeSteps(recipeSteps.concat(e.target.value))
-      setCurrentStep('')
+      e.preventDefault()
+      if (currentStep) {
+        setRecipeSteps(recipeSteps.concat(currentStep))
+        setCurrentStep('')
+      }
     }
   }
 
@@ -93,20 +91,17 @@ function RecipeForm() {
   }
 
   const moveStep = (direction, index) => {
-    let tempVal;
-    let tempArr
-    if(direction === 'up' && index !== 0){
-      tempArr = [...recipeSteps]
-      tempVal = tempArr[index]
-      tempArr[index] = tempArr[index-1]
-      tempArr[index-1] = tempVal
+    let tempArr = [...recipeSteps]
+    let tempVal = tempArr[index]
+
+    if (direction === 'up' && index !== 0) {
+      tempArr[index] = tempArr[index - 1]
+      tempArr[index - 1] = tempVal
       setRecipeSteps(tempArr)
     }
-    if(direction === 'down' && index !== recipeSteps.length - 1){
-      tempArr=[...recipeSteps]
-      tempVal=tempArr[index]
-      tempArr[index] = tempArr[index+1]
-      tempArr[index+1] = tempVal
+    else if (direction === 'down' && index !== recipeSteps.length - 1) {
+      tempArr[index] = tempArr[index + 1]
+      tempArr[index + 1] = tempVal
       setRecipeSteps(tempArr)
     }
 
@@ -129,11 +124,11 @@ function RecipeForm() {
               <p>kişilik</p>
             </div>
             <div>
-              <input value={prepTime} onChange={(e) => setPrepTime(e.target.value)} className="number-input" type="number" name="amount" id="amountId" />
+              <input value={prepTime} onChange={(e) => setPrepTime(e.target.value)} className="number-input" type="number" name="prepTimeName" id="prepTimeId" />
               <p>dakikada hazırlanır</p>
             </div>
             <div>
-              <input value={cookTime} onChange={(e) => setCookTime(e.target.value)} className="number-input" type="number" name="amount" id="amountId" />
+              <input value={cookTime} onChange={(e) => setCookTime(e.target.value)} className="number-input" type="number" name="cookTimeName" id="cookTimeId" />
               <p>dakikada pişer</p>
             </div>
           </div>
@@ -142,7 +137,7 @@ function RecipeForm() {
             <select value={category} onChange={(e) => setCategory(e.target.value)} className="category-input" name="category" id="categoryId">
               {
                 categories.map(category =>
-                  <option key={category.key} value={category.key}>{category.value}</option>
+                  <option key={category} value={category}>{category}</option>
                 )
               }
             </select>
@@ -156,7 +151,7 @@ function RecipeForm() {
           </div>
           <div className="recipe-steps">
             <p className="recipe-steps-title">Tarif Adımları</p>
-            <input onKeyDown={addStep} placeholder="Tarif adımınızı yazıp enter'a basın..." className="recipe-steps-textarea" value={currentStep} onChange={(e) => setCurrentStep(e.target.value)} name="recipeStep" id="recipeStepId" />
+            <input onKeyPress={addStep} placeholder="Tarif adımınızı yazıp enter'a basın..." className="recipe-steps-textarea" value={currentStep} onChange={(e) => setCurrentStep(e.target.value)} name="recipeStep" id="recipeStepId" />
             <div className="recipe-steps-list">
               {
                 recipeSteps.map((step, index) =>
@@ -166,12 +161,13 @@ function RecipeForm() {
             </div>
 
           </div>
-          <button className="btn-add" onClick={() => console.log(ingredients.split('\n').map(i => i.trim()).filter(i => i))} type="submit" className="recipe-post-button">Onaya Gönder!</button>
+          <button type="submit" className="recipe-post-button">Onaya Gönder!</button>
         </form>
       </div>
-      {title} | {description} | {amount} | {prepTime} | {cookTime} | {category} | {ingredients} | {recipeSteps}
+      {prepTime}
     </div>
   )
+
 }
 
 export default RecipeForm

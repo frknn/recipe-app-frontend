@@ -2,11 +2,11 @@ import React from 'react'
 import './styles/RecipeList.css'
 import RecipeCard from './RecipeCard'
 
-function RecipeList(props) {
-  console.log('RECIPES: ',props.recipes)
+function RecipeList({recipes}) {
+
   return (
     <div className="recipe-list">
-      {props.recipes.map(recipe => <RecipeCard recipe={recipe} />)}
+      {recipes.map(recipe => <RecipeCard key={recipe._id} recipe={recipe} />)}
     </div>
   )
 }

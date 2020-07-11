@@ -1,21 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './styles/LoggedIn.css'
+import { useDispatch } from 'react-redux'
+import { logout } from '../reducers/authReducer'
 
-function LoggedIn(props) {
+function LoggedIn({ currentUser }) {
 
-  const handleLogout = () => {
-    window.localStorage.removeItem('currentUser')
-    props.setCurrentUser(null)
-  }
+  const dispatch = useDispatch()
 
   return (
     <div className="logged-in-wrapper">
-      <span>{props.currentUser.email}</span>
+      <span>{currentUser.email}</span>
       <div>
         <Link to="/paylas" style={{ textDecoration: "inherit", color: "inherit" }}><span>Tarif Paylaş</span></Link>
         <span> - </span>
-        <span onClick={handleLogout}>Çıkış Yap</span>
+        <span onClick={() => dispatch(logout())}>Çıkış Yap</span>
       </div>
     </div>
   )

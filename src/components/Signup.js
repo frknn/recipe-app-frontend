@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import './styles/Signup.css'
 import closeIcon from './icons/close-icon.png'
-import { register } from '../services/authService'
+import authService from '../services/authService'
+import { toast } from 'react-toastify'
 
 function Signup(props) {
 
@@ -30,16 +31,16 @@ function Signup(props) {
     }
 
     else {
-
       let signupObj = { name, lastName, email, password }
-      const data = await register(signupObj)
+      const data = await authService.register(signupObj)
       console.log("DATA", data)
+
       if (!data.success) {
         setSignupErrorMessage(data.error)
         console.log("ERROR", data.error)
       } else {
-        alert(data.message)
-        props.handleSignupDisplay(false)
+        toast.success('Hesabınız oluşturuldu!')
+        props.handleDisplaySignup(false)
       }
     }
 
@@ -48,7 +49,7 @@ function Signup(props) {
   return (
     <div className="signup">
       {signupErrorMessage ? <span onClick={() => setSignupErrorMessage(null)} style={{ cursor: 'pointer', backgroundColor: 'lightcoral', borderRadius: '0.5rem', color: "whitesmoke", margin: 0, padding: "0.2rem", border: "2px solid black" }}>{signupErrorMessage}</span> : null}
-      <div onClick={() => props.handleSignupDisplay(false)} className="signup-close-icon"><img src={closeIcon} alt="close-icon" /></div>
+      <div className="signup-close-icon"><img onClick={() => props.handleDisplaySignup(false)} src={closeIcon} alt="close-icon" /></div>
       <form onSubmit={handleSubmit}>
         <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Adınız..." className="two-col-input" type="text" name="name" id="nameId" />
         <input value={lastName} onChange={(e) => setlastName(e.target.value)} placeholder="Soyadınız..." className="two-col-input" type="text" name="lasName" id="lastNameId" />
